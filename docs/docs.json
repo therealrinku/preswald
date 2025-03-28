@@ -69,6 +69,7 @@
               "sdk/button",
               "sdk/sidebar",
               "sdk/iframe"
+              "sdk/topbar",
             ]
           },
           {
