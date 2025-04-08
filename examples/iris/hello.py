@@ -10,6 +10,7 @@ from preswald import (
     get_df,
     plotly,
     sidebar,
+    tab,
     table,
     text,
 )
@@ -173,3 +174,18 @@ text(
 )
 
 chat("iris_csv")
+
+
+def fun():
+    comp1 = [table(df, dont=True)]
+    comp2 = [table(df, dont=True)]
+    return [comp1, comp2]
+
+
+tab(
+    label="Data Views",
+    tabs=[
+        {"title": "Table", "components": fun()[0]},
+        {"title": "Intro", "components": fun()[1]},
+    ],
+)

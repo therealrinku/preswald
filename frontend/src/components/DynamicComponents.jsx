@@ -26,6 +26,7 @@ import SelectboxWidget from './widgets/SelectboxWidget';
 import SidebarWidget from './widgets/SidebarWidget';
 import SliderWidget from './widgets/SliderWidget';
 import SpinnerWidget from './widgets/SpinnerWidget';
+import TabWidget from './widgets/TabWidget';
 import TableViewerWidget from './widgets/TableViewerWidget';
 import TextInputWidget from './widgets/TextInputWidget';
 import TopbarWidget from './widgets/TopbarWidget';
@@ -69,6 +70,9 @@ const MemoizedComponent = memo(
     const [componentId, componentKey, props] = extractKeyProps(component, index);
 
     switch (component.type) {
+      case 'tab':
+        return <TabWidget label={component.label} tabs={component.tabs} />;
+
       case 'sidebar':
         return <SidebarWidget defaultOpen={component.defaultopen} />;
 

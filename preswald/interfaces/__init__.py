@@ -19,6 +19,7 @@ from .components import (
     sidebar,
     slider,
     spinner,
+    tab,
     table,
     text,
     text_input,

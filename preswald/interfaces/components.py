@@ -590,7 +590,10 @@ def sidebar(defaultopen: bool = False):
 
 
 def table(
-    data: pd.DataFrame, title: Optional[str] = None, limit: Optional[int] = None
+    data: pd.DataFrame,
+    title: Optional[str] = None,
+    limit: Optional[int] = None,
+    dont=False,
 ) -> Dict:
     """Create a table component that renders data using TableViewerWidget.
 
@@ -662,7 +665,10 @@ def table(
         # Verify JSON serialization before returning
         json.dumps(component)
         logger.debug(f"Created AG Grid table component: {component}")
-        service.append_component(component)
+        if not dont:
+            service.append_component(component)
+
+        # service.append_component(component)
         return component
 
     except Exception as e:
@@ -731,6 +737,17 @@ def topbar() -> Dict:
     id = generate_id("topbar")
     logger.debug(f"Creating topbar component with id {id}")
     component = {"type": "topbar", "id": id}
+    logger.debug(f"Created component: {component}")
+    service.append_component(component)
+    return component
+
+
+def tab(label: str, tabs: list[dict]) -> None:
+    """Creates a tab component"""
+    service = PreswaldService.get_instance()
+    id = generate_id("tab")
+    logger.debug(f"Creating tab component with id {id}")
+    component = {"type": "tab", "id": id, "label": label, "tabs": tabs}
     logger.debug(f"Created component: {component}")
     service.append_component(component)
     return component
